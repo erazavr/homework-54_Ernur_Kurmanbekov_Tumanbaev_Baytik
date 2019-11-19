@@ -1,26 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import './cards/cards.css'
+import Card from "./components/card";
+import CardDeck from './CardDeck'
+import PokerHand from "./PokerHand";
+class App extends Component {
+    constructor(props){
+        super(props);
+        this.deck = new CardDeck();
+    }
+    state = {
+        cards: [],
+        result: ''
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    };
+    changeCards =  () => {
+        if (this.deck.decks.length < 5) {
+            alert('that\'s all' );
+        } else {
+            const cards = this.deck.getCards(5);
+            const poker = new PokerHand(this.state.cards);
+            this.setState({cards, result: poker.getOutcome()})
+        }
+    };
+    render() {
+        return (
+            <div className='myCard'>
+                <p>{this.state.result}</p>
+              <div className="playingCards faceImages">
+                  {this.state.cards.map((card,index) => {
+                      return (
+                         <Card key = {index} suit = {card.suit} rank = {card.rank}/>
+                         );
+                  })}
+              </div>
+                <button onClick = {this.changeCards}>Shuffle Cards</button>
+            </div>
+        );
+    }
 }
 
 export default App;
