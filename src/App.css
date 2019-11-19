@@ -1,22 +1,18 @@
-.App {
+.myCard {
+  margin-top: 10px;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.myCard > div{
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 
-.App-link {
-  color: #09d3ac;
+}
+.myCard button {
+  margin-top: 40px;
+  cursor: pointer;
+  padding: 20px 40px;
+  font-size: 20px;
+}
+.card {
+  vertical-align: top;
 }
